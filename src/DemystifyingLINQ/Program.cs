@@ -7,13 +7,13 @@ namespace DemystifyingLINQ
     {
         static void Main(string[] args)
         {
-            foreach (var item in GeneratedSequence())
+            foreach (var item in GenerateSequence())
             {
                 Console.WriteLine(item);
             }
         }
 
-        private static IEnumerable<string> GeneratedSequence()
+        private static IEnumerable<string> GenerateSequence()
         {
             int i = 0;
             while (i++ < 100)
