@@ -8,7 +8,13 @@ namespace DemystifyingLINQ
         static void Main(string[] args)
         {
             var sequence = GenerateSequence()
-                .Where(s => s.Length < 2);
+                .Where(s => s.Length < 2)
+                .Select((s, index) =>
+                new
+                {
+                    index,
+                    formattedResult = s.PadLeft(20)
+                });
             foreach (var item in sequence)
             {
                 Console.WriteLine(item);
