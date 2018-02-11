@@ -7,7 +7,9 @@ namespace DemystifyingLINQ
     {
         static void Main(string[] args)
         {
-            foreach (var item in GenerateSequence())
+            var sequence = GenerateSequence()
+                .Where(s => s.Length < 2);
+            foreach (var item in sequence)
             {
                 Console.WriteLine(item);
             }
