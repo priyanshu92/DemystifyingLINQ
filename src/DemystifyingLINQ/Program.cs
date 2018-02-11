@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace DemystifyingLINQ
 {
@@ -6,7 +7,17 @@ namespace DemystifyingLINQ
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            foreach (var item in GeneratedSequence())
+            {
+                Console.WriteLine(item);
+            }
+        }
+
+        private static IEnumerable<string> GeneratedSequence()
+        {
+            int i = 0;
+            while (i++ < 100)
+                yield return i.ToString();
         }
     }
 }
