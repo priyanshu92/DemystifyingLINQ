@@ -16,6 +16,12 @@ namespace DemystifyingLINQ
             comparison = (a, b) => comparer(a).CompareTo(comparer(b));
         }
 
+        public MyOrderedEnumerable(IEnumerable<T> source, Comparison<T> comparison)
+        {
+            this.source = source;
+            this.comparison = comparison;
+        }
+
         public MyOrderedEnumerable(IOrderingImpl<T> source, Func<T, TKey> comparer)
         {
             this.source = source;
@@ -25,6 +31,18 @@ namespace DemystifyingLINQ
                 if (originalComparison != 0)
                     return originalComparison;
                 return comparer(a).CompareTo(comparer(b));
+            };
+        }
+
+        public MyOrderedEnumerable(IOrderingImpl<T> source, Comparison<T> comparison)
+        {
+            this.source = source;
+            this.comparison = (a, b) =>
+            {
+                var originalComparison = source.CompareTo(a, b);
+                if (originalComparison != 0)
+                    return originalComparison;
+                return comparison(a, b);
             };
         }
 

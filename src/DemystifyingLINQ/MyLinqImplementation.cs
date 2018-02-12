@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace DemystifyingLINQ
 {
     public static class MyLinqImplementation
-    {        
+    {
         public static IEnumerable<T> Where<T>(this IEnumerable<T> source, Func<T, bool> predicate)
         {
             Console.WriteLine("Start: Using Custom Where Implementation");
@@ -136,10 +136,24 @@ namespace DemystifyingLINQ
             return new MyOrderedEnumerable<T, TKey>(source, comparer);
         }
 
+        public static MyOrderedEnumerable<T, TKey> OrderByDescending<T, TKey>(this IEnumerable<T> source, Func<T, TKey> comparer)
+            where TKey : IComparable<TKey>
+        {
+            int descendingComparer(T left, T right) => comparer(right).CompareTo(comparer(left));
+            return new MyOrderedEnumerable<T, TKey>(source, descendingComparer);
+        }
+
         public static IOrderingImpl<T> ThenBy<T, TKey>(this IOrderingImpl<T> source, Func<T, TKey> comparer)
             where TKey : IComparable<TKey>
         {
             return new MyOrderedEnumerable<T, TKey>(source, comparer);
+        }
+
+        public static IOrderingImpl<T> ThenByDescending<T, TKey>(this IOrderingImpl<T> source, Func<T, TKey> comparer)
+            where TKey : IComparable<TKey>
+        {
+            Comparison<T> descendingComparer = (left, right) => comparer(right).CompareTo(comparer(left));
+            return new MyOrderedEnumerable<T, TKey>(source, descendingComparer);
         }
     }
 }
