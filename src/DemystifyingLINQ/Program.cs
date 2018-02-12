@@ -13,6 +13,12 @@ namespace DemystifyingLINQ
             //Console.WriteLine(SequenceFromConsole().Any(x => x != null && x.Contains("hello")));
             //return;
 
+            //Console.WriteLine(SequenceFromConsole().Count());
+            //return;
+
+            Console.WriteLine(SequenceFromConsole().Count(x => x != null && x.Contains("hello")));
+            return;
+
             var input = SequenceFromConsole();
             foreach (var item in input)
             {

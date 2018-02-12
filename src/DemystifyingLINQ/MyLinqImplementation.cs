@@ -48,5 +48,18 @@ namespace DemystifyingLINQ
         {
             return source.Where(predicate).GetEnumerator().MoveNext();
         }
+
+        public static int Count<T>(this IEnumerable<T> source)
+        {
+            int count = 0;
+            foreach (var item in source)
+                count++;
+            return count;
+        }
+
+        public static int Count<T>(this IEnumerable<T> source, Func<T, bool> predicate)
+        {
+            return source.Where(predicate).Count();
+        }
     }
 }
