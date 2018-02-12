@@ -22,7 +22,17 @@ namespace DemystifyingLINQ
             //Console.WriteLine(SequenceFromConsole().Select(x => int.Parse(x)).Sum());
             //return;
 
-            Console.WriteLine(SequenceFromConsole().Select(x => int.Parse(x)).Sum(10));
+            //Console.WriteLine(SequenceFromConsole().Select(x => int.Parse(x)).Sum(10));
+            //return;
+
+            //var sum = SequenceFromConsole().Select(x => int.Parse(x))
+            //    .Aggregate((partialSum, item) => partialSum + item);
+            //Console.WriteLine(sum);
+            //return;
+
+            var sum = SequenceFromConsole().Select(x => int.Parse(x))
+                .Aggregate(10, (partialSum, item) => partialSum + item);
+            Console.WriteLine(sum);
             return;
 
             var input = SequenceFromConsole();

@@ -81,5 +81,21 @@ namespace DemystifyingLINQ
             }
             return sum;
         }
+
+        public static int Aggregate(this IEnumerable<int> source, Func<int, int, int> function)
+        {
+            var sum = 0;
+            foreach (var item in source)
+                sum = function(sum, item);
+            return sum;
+        }
+
+        public static int Aggregate(this IEnumerable<int> source, int seed, Func<int, int, int> function)
+        {
+            var sum = seed;
+            foreach (var item in source)
+                sum = function(sum, item);
+            return sum;
+        }
     }
 }
