@@ -61,5 +61,25 @@ namespace DemystifyingLINQ
         {
             return source.Where(predicate).Count();
         }
+
+        public static int Sum(this IEnumerable<int> source)
+        {
+            var sum = 0;
+            foreach (var item in source)
+            {
+                sum += item;
+            }
+            return sum;
+        }
+
+        public static int Sum(this IEnumerable<int> source, int seed)
+        {
+            var sum = seed;
+            foreach (var item in source)
+            {
+                sum += item;
+            }
+            return sum;
+        }
     }
 }

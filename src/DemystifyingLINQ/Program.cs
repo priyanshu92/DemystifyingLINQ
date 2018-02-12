@@ -10,13 +10,19 @@ namespace DemystifyingLINQ
             //Console.WriteLine(SequenceFromConsole().Any());
             //return;
 
-            //Console.WriteLine(SequenceFromConsole().Any(x => x != null && x.Contains("hello")));
+            //Console.WriteLine(SequenceFromConsole().Any(x => x.Contains("hello")));
             //return;
 
             //Console.WriteLine(SequenceFromConsole().Count());
             //return;
 
-            Console.WriteLine(SequenceFromConsole().Count(x => x != null && x.Contains("hello")));
+            //Console.WriteLine(SequenceFromConsole().Count(x => x.Contains("hello")));
+            //return;
+
+            //Console.WriteLine(SequenceFromConsole().Select(x => int.Parse(x)).Sum());
+            //return;
+
+            Console.WriteLine(SequenceFromConsole().Select(x => int.Parse(x)).Sum(10));
             return;
 
             var input = SequenceFromConsole();
@@ -53,7 +59,8 @@ namespace DemystifyingLINQ
             string text = default(string);
             while (text != "done")
             {
-                yield return text;
+                if (text != null)
+                    yield return text;
                 text = Console.ReadLine();
             }
         }
