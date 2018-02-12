@@ -30,8 +30,18 @@ namespace DemystifyingLINQ
             //Console.WriteLine(sum);
             //return;
 
+            //var sum = SequenceFromConsole().Select(x => int.Parse(x))
+            //    .Aggregate(10, (partialSum, item) => partialSum + item);
+            //Console.WriteLine(sum);
+            //return;
+
+            //var sum = SequenceFromConsole()
+            //    .Aggregate<string>("Comma Separated", (existingString, item) => $"{existingString}, {item}");
+            //Console.WriteLine(sum);
+            //return;
+
             var sum = SequenceFromConsole().Select(x => int.Parse(x))
-                .Aggregate(10, (partialSum, item) => partialSum + item);
+                .Aggregate("Comma Separated", (existingString, item) => $"{existingString}, {item}");
             Console.WriteLine(sum);
             return;
 

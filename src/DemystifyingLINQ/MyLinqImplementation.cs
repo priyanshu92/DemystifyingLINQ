@@ -97,5 +97,37 @@ namespace DemystifyingLINQ
                 sum = function(sum, item);
             return sum;
         }
+
+        public static T Aggregate<T>(this IEnumerable<T> source, Func<T, T, T> function)
+        {
+            var sum = default(T);
+            foreach (var item in source)
+                sum = function(sum, item);
+            return sum;
+        }
+
+        public static T Aggregate<T>(this IEnumerable<T> source, T seed, Func<T, T, T> function)
+        {
+            var sum = seed;
+            foreach (var item in source)
+                sum = function(sum, item);
+            return sum;
+        }
+
+        public static TAccumulate Aggregate<TSource, TAccumulate>(this IEnumerable<TSource> source, Func<TAccumulate, TSource, TAccumulate> function)
+        {
+            var sum = default(TAccumulate);
+            foreach (var item in source)
+                sum = function(sum, item);
+            return sum;
+        }
+
+        public static TAccumulate Aggregate<TSource, TAccumulate>(this IEnumerable<TSource> source, TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> function)
+        {
+            var sum = seed;
+            foreach (var item in source)
+                sum = function(sum, item);
+            return sum;
+        }
     }
 }
