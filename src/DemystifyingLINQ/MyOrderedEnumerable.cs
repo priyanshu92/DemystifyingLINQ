@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace DemystifyingLINQ
 {
-    public class MyOrderedEnumerable<T, TKey> : IEnumerable<T> where TKey : IComparable<TKey>
+    public class MyOrderedEnumerable<T, TKey> : IOrderingImpl<T> where TKey : IComparable<TKey>
     {
         private IEnumerable<T> source;
         private Comparison<T> comparison;
@@ -14,6 +14,25 @@ namespace DemystifyingLINQ
         {
             this.source = source;
             comparison = (a, b) => comparer(a).CompareTo(comparer(b));
+        }
+
+        public MyOrderedEnumerable(IOrderingImpl<T> source, Func<T, TKey> comparer)
+        {
+            this.source = source;
+            comparison = (a, b) =>
+            {
+                var originalComparison = source.CompareTo(a, b);
+                if (originalComparison != 0)
+                    return originalComparison;
+                return comparer(a).CompareTo(comparer(b));
+            };
+        }
+
+        public IEnumerable<T> OriginalSequence => source;
+
+        public int CompareTo(T left, T right)
+        {
+            return comparison(left, right);
         }
 
         public IEnumerator<T> GetEnumerator()

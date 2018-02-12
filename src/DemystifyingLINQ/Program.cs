@@ -40,7 +40,12 @@ namespace DemystifyingLINQ
             //Console.WriteLine(sum);
             //return;
 
-            var orderedSequence = SequenceFromConsole().OrderBy(x => x.Length);
+            //var orderedSequence = SequenceFromConsole().OrderBy(x => x.Length);
+            //foreach (var item in orderedSequence)
+            //    Console.WriteLine($"\t{item}");
+            //return;
+
+            var orderedSequence = SequenceFromConsole().OrderBy(x => x.Length).ThenBy(x => x);
             foreach (var item in orderedSequence)
                 Console.WriteLine($"\t{item}");
             return;

@@ -135,5 +135,11 @@ namespace DemystifyingLINQ
         {
             return new MyOrderedEnumerable<T, TKey>(source, comparer);
         }
+
+        public static IOrderingImpl<T> ThenBy<T, TKey>(this IOrderingImpl<T> source, Func<T, TKey> comparer)
+            where TKey : IComparable<TKey>
+        {
+            return new MyOrderedEnumerable<T, TKey>(source, comparer);
+        }
     }
 }
