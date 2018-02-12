@@ -38,5 +38,15 @@ namespace DemystifyingLINQ
             }
             Console.WriteLine("End: Using Custom Select Implementation");
         }
+
+        public static bool Any<T>(this IEnumerable<T> source)
+        {
+            return source.GetEnumerator().MoveNext();
+        }
+
+        public static bool Any<T>(this IEnumerable<T> source, Func<T, bool> predicate)
+        {
+            return source.Where(predicate).GetEnumerator().MoveNext();
+        }
     }
 }
