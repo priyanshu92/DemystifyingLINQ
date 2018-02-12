@@ -129,5 +129,11 @@ namespace DemystifyingLINQ
                 sum = function(sum, item);
             return sum;
         }
+
+        public static MyOrderedEnumerable<T, TKey> OrderBy<T, TKey>(this IEnumerable<T> source, Func<T, TKey> comparer)
+            where TKey : IComparable<TKey>
+        {
+            return new MyOrderedEnumerable<T, TKey>(source, comparer);
+        }
     }
 }
